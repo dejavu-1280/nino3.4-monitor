@@ -308,63 +308,23 @@
   </div>
 </section>
 
-<!-- ═══ 核心内容：Niño3.4 监测 ═══ -->
+<!-- ═══ 核心内容（核心概念） ═══ -->
 <section class="section" id="features" style="max-width:none;background:linear-gradient(180deg,#f0f9ff,#e0f2fe)">
   <div class="section" style="padding-top:60px">
     <div class="sec-head">
       <div class="kicker">Core Content</div>
-      <h2>核心内容 · Niño3.4 指数监测</h2>
-      <p class="lead">ENSO 监测的核心指标——Niño3.4 海表温度距平指数自动抓取与可视化，数据来源 NOAA CPC（ERSSTv5，基准期 1991–2020）。</p>
+      <h2>核心内容</h2>
+      <p class="lead">探索物理海洋学的核心概念和重要理论。</p>
       <div class="divider"></div>
     </div>
 
-    <div class="monitor-wrap">
-      <div class="monitor-head">
-        <h3>🌡️ Niño3.4 指数实时监测 <span class="status-pill st-neutral" id="statusPill"><span class="dot"></span><span id="statusText">—</span></span></h3>
-        <span class="update-status" id="updateStatus"><span class="dot"></span>内置快照</span>
-        <button class="refresh-btn" id="refreshBtn" title="立即从 NOAA CPC 获取最新数据">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>
-          刷新数据
-        </button>
-      </div>
-      <div class="monitor-body">
-        <div class="stats">
-          <div class="stat-card"><div class="label">最新指数（距平）</div><div class="value" id="latestValue">—</div><div class="note" id="latestMonth">—</div></div>
-          <div class="stat-card"><div class="label">当前状态</div><div class="value" id="stateValue">—</div><div class="note" id="stateNote">—</div></div>
-          <div class="stat-card"><div class="label">数据跨度</div><div class="value" id="spanValue">—</div><div class="note" id="spanNote">—</div></div>
-          <div class="stat-card"><div class="label">历史极值</div><div class="value" id="extremeValue">—</div><div class="note" id="extremeNote">—</div></div>
-        </div>
-        <div class="chart-head">
-          <div class="chart-title">Niño3.4 指数时间序列</div>
-          <div class="chart-tools">
-            <label class="mean-toggle"><input type="checkbox" id="meanToggle" checked>3 个月滑动平均</label>
-            <div class="range-group" id="rangeGroup">
-              <button class="range-btn" data-range="2y">近 2 年</button>
-              <button class="range-btn" data-range="5y">近 5 年</button>
-              <button class="range-btn active" data-range="10y">近 10 年</button>
-              <button class="range-btn" data-range="1990">1990 以来</button>
-              <button class="range-btn" data-range="all">全部</button>
-            </div>
-          </div>
-        </div>
-        <div id="chart"></div>
-        <div class="chart-legend">
-          <span class="key"><span class="swatch" style="background:#E15B4A"></span>偏暖 · 厄尔尼诺（&gt; +0.5°C）</span>
-          <span class="key"><span class="swatch" style="background:#3F7FC0"></span>偏冷 · 拉尼娜（&lt; −0.5°C）</span>
-          <span class="key"><span class="swatch" style="background:#A8BAC9"></span>中性</span>
-          <span class="key"><span class="swatch" style="background:#123A5C;height:3px"></span>3 个月滑动平均</span>
-          <span class="key">滚轮/捏合缩放 · 拖动平移</span>
-        </div>
-      </div>
-    </div>
-
     <div class="concept-grid">
-      <div class="concept-card"><div class="ico">🌊</div><h4>地转平衡</h4><p>压强梯度力与科氏力的平衡，理解大洋环流的基础。</p></div>
-      <div class="concept-card"><div class="ico">🌀</div><h4>埃克曼层</h4><p>风驱动海流在垂直方向的变化规律。</p></div>
-      <div class="concept-card"><div class="ico">📊</div><h4>位势涡度</h4><p>理解海洋涡旋、锋面和环流结构的守恒量。</p></div>
-      <div class="concept-card"><div class="ico">🌡️</div><h4>海洋层化</h4><p>海水密度随深度的变化与混合过程。</p></div>
-      <div class="concept-card"><div class="ico">💨</div><h4>Sverdrup 平衡</h4><p>风应力旋度与经向输运关系的理论。</p></div>
-      <div class="concept-card"><div class="ico">🌐</div><h4>β 效应</h4><p>科氏参数随纬度变化，理解西边界流强化。</p></div>
+      <div class="concept-card"><div class="ico">🌊</div><h4>地转平衡</h4><p>地转平衡是海洋中最重要的动力平衡之一，描述了压强梯度力与科氏力之间的平衡关系，是理解大洋环流的基础。</p></div>
+      <div class="concept-card"><div class="ico">🌀</div><h4>埃克曼层</h4><p>埃克曼层理论解释了风驱动海流在垂直方向上的变化规律，揭示了风应力如何通过摩擦作用影响上层海洋运动。</p></div>
+      <div class="concept-card"><div class="ico">📊</div><h4>位势涡度</h4><p>位势涡度是海洋动力学中的守恒量，在理解海洋涡旋、锋面和环流结构中起着关键作用。</p></div>
+      <div class="concept-card"><div class="ico">🌡️</div><h4>海洋层化</h4><p>海洋层化描述了海水密度随深度的变化，是理解海洋混合、内波传播和深层环流的重要概念。</p></div>
+      <div class="concept-card"><div class="ico">💨</div><h4>Sverdrup 平衡</h4><p>Sverdrup 平衡是风驱动大洋环流的理论基础，建立了风应力旋度与经向输运之间的关系。</p></div>
+      <div class="concept-card"><div class="ico">🌐</div><h4>β 效应</h4><p>β 效应描述了科氏参数随纬度变化对海洋运动的影响，是理解西边界流强化和 Rossby 波传播的关键。</p></div>
     </div>
   </div>
 </section>
@@ -455,21 +415,54 @@
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">9</span><span class="en">What are the ranges of the magnitude of the four terms? For each term, please specify the location and value of the maximum and minimum center.</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><ul><li><b>Qs：</b>月平均范围 <b>0 ~ 300 W/m²</b>。极大：夏季副热带大洋东部少云海区（~280–300）；极小：冬季高纬/极区（≈0）</li><li><b>Qb：</b>净损失 <b>−30 ~ −90 W/m²</b>。损失最大：干燥少云的副热带东部及红海（−80 ~ −100）；损失最小：多云多雾的赤道 ITCZ 与高纬海区（~ −30）</li><li><b>Qe：</b>净损失 <b>−30 ~ −250 W/m²</b>（冬季极端 &gt; −300）。损失最大：冬季湾流/黑潮延伸体（−200 ~ −300）及红海、阿拉伯海冬季风区；损失最小：赤道暖池与高纬冷海（−30 ~ −50）</li><li><b>Qh：</b>净损失 <b>−5 ~ −50 W/m²</b>（极端 ~ −100）。损失最大：冬季西边界流延伸区冷空气爆发；损失最小：赤道（Ts ≈ Ta）与弱风区</li></ul><p>以上为月平均气候态典型量级（参考 Talley et al., <i>Descriptive Physical Oceanography</i>）。</p></div></details></div>
 </section>
 
-<!-- ═══ 故事会 ═══ -->
-<section class="section" id="story">
-  <div class="sec-head">
-    <div class="kicker">Story Time</div>
-    <h2>故事会</h2>
-    <p class="lead">通过生动的故事和案例，深入理解物理海洋学的核心概念。</p>
-    <div class="divider"></div>
-  </div>
-  <div class="story-card">
-    <div class="tag"><span>海洋沙漠</span><span>物理海洋</span><span>通量为零</span></div>
-    <h3>海洋沙漠：通量为零的成因</h3>
-    <p>通过生动的故事和精美的视觉效果，一起探索海洋沙漠的形成原因和通量为零的现象。</p>
-    <div class="coming">🎬 内容筹备中，敬请期待（可先下载参考 PPT 预览）</div>
-    <div class="book-links" style="margin-top:22px;justify-content:center">
-      <a class="btn btn-ocean" href="https://huangjin446.github.io/ocean3/%E6%B5%B7%E6%B4%8B%E6%B2%99%E6%BC%A0%EF%BC%9A%E9%80%9A%E9%87%8F%E4%B8%BA%E9%9B%B6%E7%9A%84%E6%88%90%E5%9B%A0.pptx" target="_blank">下载完整 PPT</a>
+<!-- ═══ 故事会：Niño3.4 监测 ═══ -->
+<section class="section" id="story" style="max-width:none;background:linear-gradient(180deg,#e0f2fe,#f0f9ff)">
+  <div class="section" style="padding-top:60px">
+    <div class="sec-head">
+      <div class="kicker">Story Time · ENSO</div>
+      <h2>故事会 · Niño3.4 指数监测</h2>
+      <p class="lead">通过实时数据讲述厄尔尼诺-南方涛动（ENSO）的故事——Niño3.4 海表温度距平指数自动抓取与可视化，数据来源 NOAA CPC（ERSSTv5，基准期 1991–2020）。</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="monitor-wrap">
+      <div class="monitor-head">
+        <h3>🌡️ Niño3.4 指数实时监测 <span class="status-pill st-neutral" id="statusPill"><span class="dot"></span><span id="statusText">—</span></span></h3>
+        <span class="update-status" id="updateStatus"><span class="dot"></span>内置快照</span>
+        <button class="refresh-btn" id="refreshBtn" title="立即从 NOAA CPC 获取最新数据">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>
+          刷新数据
+        </button>
+      </div>
+      <div class="monitor-body">
+        <div class="stats">
+          <div class="stat-card"><div class="label">最新指数（距平）</div><div class="value" id="latestValue">—</div><div class="note" id="latestMonth">—</div></div>
+          <div class="stat-card"><div class="label">当前状态</div><div class="value" id="stateValue">—</div><div class="note" id="stateNote">—</div></div>
+          <div class="stat-card"><div class="label">数据跨度</div><div class="value" id="spanValue">—</div><div class="note" id="spanNote">—</div></div>
+          <div class="stat-card"><div class="label">历史极值</div><div class="value" id="extremeValue">—</div><div class="note" id="extremeNote">—</div></div>
+        </div>
+        <div class="chart-head">
+          <div class="chart-title">Niño3.4 指数时间序列</div>
+          <div class="chart-tools">
+            <label class="mean-toggle"><input type="checkbox" id="meanToggle" checked>3 个月滑动平均</label>
+            <div class="range-group" id="rangeGroup">
+              <button class="range-btn" data-range="2y">近 2 年</button>
+              <button class="range-btn" data-range="5y">近 5 年</button>
+              <button class="range-btn active" data-range="10y">近 10 年</button>
+              <button class="range-btn" data-range="1990">1990 以来</button>
+              <button class="range-btn" data-range="all">全部</button>
+            </div>
+          </div>
+        </div>
+        <div id="chart"></div>
+        <div class="chart-legend">
+          <span class="key"><span class="swatch" style="background:#E15B4A"></span>偏暖 · 厄尔尼诺（&gt; +0.5°C）</span>
+          <span class="key"><span class="swatch" style="background:#3F7FC0"></span>偏冷 · 拉尼娜（&lt; −0.5°C）</span>
+          <span class="key"><span class="swatch" style="background:#A8BAC9"></span>中性</span>
+          <span class="key"><span class="swatch" style="background:#123A5C;height:3px"></span>3 个月滑动平均</span>
+          <span class="key">滚轮/捏合缩放 · 拖动平移</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
