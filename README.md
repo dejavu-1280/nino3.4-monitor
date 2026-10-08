@@ -4,7 +4,7 @@ Niño3.4 海表温度距平指数的自动监测与可视化单页网站（零�
 
 ## 在线访问
 
-- GitHub Pages：<https://dejavu-1280.github.io/nino34-monitor/>
+- GitHub Pages：<https://dejavu-1280.github.io/nino3.4-monitor/>
 - Cloudflare Pages（备用）：<https://nino34.pages.dev/>
 
 ## 功能
