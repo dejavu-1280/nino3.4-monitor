@@ -27,6 +27,11 @@
   a{color:var(--ocean-deep);text-decoration:none}
   a:hover{opacity:.85}
   section{scroll-margin-top:76px}
+  ::selection{background:#bae6fd;color:#0c4a6e}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:#e0f2fe}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#38bdf8,#0369a1);border-radius:6px;border:2px solid #e0f2fe}
+  ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#0ea5e9,#0c4a6e)}
 
   /* ── 导航 ─────────────────────────── */
   .nav{
@@ -58,11 +63,19 @@
     background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 50%,#0ea5e9 100%);
     padding:150px 24px 170px;
   }
+  .hero::before{
+    content:"";position:absolute;width:560px;height:560px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(56,189,248,.3),transparent 65%);top:-200px;left:-140px;
+  }
+  .hero::after{
+    content:"";position:absolute;width:480px;height:480px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(186,230,253,.22),transparent 65%);bottom:-40px;right:-120px;
+  }
   .hero .hero-wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0}
-  .hero h1{font-size:44px;font-weight:800;letter-spacing:2px;margin-bottom:16px}
-  .hero .en{font-size:17px;font-weight:500;opacity:.9;letter-spacing:.5px;margin-bottom:10px}
-  .hero p.sub{font-size:16px;opacity:.92;max-width:620px;margin:0 auto 30px}
-  .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero h1{font-size:44px;font-weight:800;letter-spacing:2px;margin-bottom:16px;position:relative;z-index:1}
+  .hero .en{font-size:17px;font-weight:500;opacity:.9;letter-spacing:.5px;margin-bottom:10px;position:relative;z-index:1}
+  .hero p.sub{font-size:16px;opacity:.92;max-width:620px;margin:0 auto 30px;position:relative;z-index:1}
+  .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
   .btn{
     display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:999px;
     font-size:15px;font-weight:600;cursor:pointer;transition:.2s;
@@ -89,7 +102,12 @@
     border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow);transition:.25s;
   }
   .field-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -10px rgba(12,74,110,.2)}
-  .field-card .ico{font-size:32px;margin-bottom:14px}
+  .field-card .ico{
+    width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+    font-size:28px;margin-bottom:14px;background:linear-gradient(135deg,#e0f2fe,#f0f9ff);
+    border:1px solid var(--border);box-shadow:0 4px 10px rgba(12,74,110,.08);transition:transform .25s;
+  }
+  .field-card:hover .ico{transform:scale(1.08) rotate(-4deg)}
   .field-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
   .field-card p{font-size:13.5px;color:var(--ink-2)}
 
@@ -150,23 +168,65 @@
     box-shadow:var(--shadow);transition:.2s;
   }
   .concept-card:hover{transform:translateY(-4px)}
-  .concept-card .ico{font-size:26px;margin-bottom:10px}
+  .concept-card .ico{
+    width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    font-size:24px;margin-bottom:10px;background:linear-gradient(135deg,#e0f2fe,#f0f9ff);
+    border:1px solid var(--border);transition:transform .25s;
+  }
+  .concept-card:hover .ico{transform:scale(1.08) rotate(-4deg)}
   .concept-card h4{font-size:15.5px;font-weight:700;margin-bottom:6px}
   .concept-card p{font-size:13px;color:var(--ink-2)}
 
   /* ── 知识库 ──────────────────────── */
-  .kb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .kb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .kb-card{
-    background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;
-    box-shadow:var(--shadow);transition:.2s;
+    position:relative;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px 24px 18px;box-shadow:var(--shadow);transition:.28s;overflow:hidden;
   }
-  .kb-card:hover{transform:translateY(-4px);border-color:var(--ocean)}
-  .kb-card .ico{font-size:26px;margin-bottom:10px}
-  .kb-card h4{font-size:15.5px;font-weight:700;margin-bottom:12px}
-  .kb-card ul{list-style:none}
-  .kb-card li{margin:9px 0}
-  .kb-card a{font-size:13.5px;color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
-  .kb-card a:hover{color:var(--ocean-deep)}
+  .kb-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--ocean),var(--cyan));
+    transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+  }
+  .kb-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -10px rgba(12,74,110,.22)}
+  .kb-card:hover::before{transform:scaleX(1)}
+  .kb-card .kb-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+  .kb-card .ico{
+    width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;
+    font-size:27px;background:linear-gradient(135deg,#e0f2fe,#f0f9ff);border:1px solid var(--border);
+    box-shadow:inset 0 2px 6px rgba(255,255,255,.8),0 4px 10px rgba(12,74,110,.08);
+    transition:transform .28s;
+  }
+  .kb-card:hover .ico{transform:scale(1.08) rotate(-4deg)}
+  .kb-card .count{
+    font-size:11.5px;font-weight:700;color:var(--ocean-deep);background:#e0f2fe;
+    padding:3px 11px;border-radius:999px;white-space:nowrap;
+  }
+  .kb-card h4{font-size:16.5px;font-weight:800;margin-bottom:4px;letter-spacing:.3px}
+  .kb-card .desc{font-size:12.5px;color:var(--ink-3);margin-bottom:12px;line-height:1.6}
+  .kb-card ul{list-style:none;border-top:1px dashed var(--border);padding-top:8px}
+  .kb-card li{margin:1px 0}
+  .kb-card a{
+    font-size:13.5px;color:var(--ink-2);font-weight:500;display:flex;align-items:center;gap:9px;
+    padding:7px 10px;border-radius:10px;transition:.18s;
+  }
+  .kb-card a .arr{
+    margin-left:auto;font-size:11.5px;color:var(--ocean);opacity:0;
+    transform:translate(-5px,4px);transition:.2s;
+  }
+  .kb-card a:hover{color:var(--ocean-deep);background:linear-gradient(90deg,#f0f9ff,#fff);transform:translateX(4px)}
+  .kb-card a:hover .arr{opacity:1;transform:none}
+  /* 三张卡各自的彩色主题 */
+  .kb-card.t-ai::before{background:linear-gradient(90deg,#8b5cf6,#d946ef)}
+  .kb-card.t-ai .ico{background:linear-gradient(135deg,#f5f3ff,#fae8ff);border-color:#ede9fe}
+  .kb-card.t-ai .count{color:#7c3aed;background:#f5f3ff}
+  .kb-card.t-ai a:hover{color:#7c3aed;background:linear-gradient(90deg,#f5f3ff,#fff)}
+  .kb-card.t-data::before{background:linear-gradient(90deg,#0ea5e9,#06b6d4)}
+  .kb-card.t-data .ico{background:linear-gradient(135deg,#e0f2fe,#cffafe);border-color:#bae6fd}
+  .kb-card.t-plot::before{background:linear-gradient(90deg,#14b8a6,#22c55e)}
+  .kb-card.t-plot .ico{background:linear-gradient(135deg,#f0fdfa,#dcfce7);border-color:#ccfbf1}
+  .kb-card.t-plot .count{color:#0d9488;background:#f0fdfa}
+  .kb-card.t-plot a:hover{color:#0d9488;background:linear-gradient(90deg,#f0fdfa,#fff)}
 
   /* ── 参考书 ──────────────────────── */
   #reference{background:linear-gradient(180deg,#e0f2fe 0%,#f0f9ff 100%)}
@@ -204,26 +264,39 @@
   @media(max-width:640px){.ticket-grid.ticket-grid-6{grid-template-columns:repeat(2,1fr)}}
   .ticket-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
   .ticket-card{
-    background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;
-    box-shadow:var(--shadow);transition:.2s;
+    position:relative;background:linear-gradient(160deg,#fff,#f8fbff);border:1px solid var(--border);
+    border-radius:16px;padding:22px 14px 18px;text-align:center;box-shadow:var(--shadow);transition:.25s;overflow:hidden;
   }
-  .ticket-card:hover{transform:translateY(-4px)}
-  .ticket-card .ico{font-size:26px;margin-bottom:8px}
+  .ticket-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--ocean),var(--cyan));opacity:0;transition:.25s;
+  }
+  .ticket-card:hover{transform:translateY(-5px);border-color:#bae6fd;box-shadow:0 16px 32px -10px rgba(12,74,110,.22)}
+  .ticket-card:hover::before{opacity:1}
+  .ticket-card .num{
+    width:46px;height:46px;margin:0 auto 10px;border-radius:50%;
+    background:linear-gradient(135deg,#e0f2fe,#bae6fd);color:var(--ocean-deep);
+    font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;
+    transition:transform .25s;box-shadow:0 4px 10px rgba(12,74,110,.1);
+  }
+  .ticket-card:hover .num{transform:scale(1.12) rotate(-6deg)}
   .ticket-card h4{font-size:14.5px;font-weight:700;margin-bottom:12px}
-  .ticket-card a{font-size:12.5px;color:var(--ocean-deep);font-weight:600}
+  .ticket-card a{
+    display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--ocean-deep);
+    background:#f0f9ff;border:1px solid var(--border);padding:6px 14px;border-radius:999px;transition:.2s;
+  }
+  .ticket-card a:hover{background:linear-gradient(135deg,#0ea5e9,#0369a1);color:#fff;border-color:transparent;box-shadow:0 6px 14px rgba(12,74,110,.25)}
   .ticket-note{text-align:center;color:var(--ink-3);font-size:13px;margin-top:18px}
 
   /* ── 问答区 ──────────────────────── */
-  .qa-group{font-size:15px;font-weight:700;color:var(--ink);margin:26px 2px 12px;display:flex;align-items:center;gap:9px}
-  .qa-group:first-of-type{margin-top:0}
-  .qa-group::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--ocean),var(--cyan));display:inline-block}
-  .qa-group span{font-weight:400;font-size:12.5px;color:var(--ink-3);margin-left:2px}
-  .qa-card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+  .qa-card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden;transition:.22s}
+  .qa-card:hover{transform:translateY(-3px);border-color:#bae6fd;box-shadow:0 14px 30px -10px rgba(12,74,110,.2)}
   .qa-card details{display:block}
   .qa-card summary{list-style:none;cursor:pointer}
   .qa-card summary::-webkit-details-marker{display:none}
-  .qa-q{display:flex;gap:13px;align-items:flex-start;padding:16px 20px}
-  .qa-num{flex:none;width:27px;height:27px;border-radius:9px;background:#e0f2fe;color:var(--ocean-deep);font-weight:700;font-size:13.5px;display:flex;align-items:center;justify-content:center}
+  .qa-q{display:flex;gap:13px;align-items:flex-start;padding:16px 20px;transition:background .2s}
+  .qa-card:hover .qa-q{background:linear-gradient(90deg,#f8fbff,transparent 60%)}
+  .qa-num{flex:none;width:27px;height:27px;border-radius:9px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);color:var(--ocean-deep);font-weight:700;font-size:13.5px;display:flex;align-items:center;justify-content:center}
   .qa-q .en{font-weight:600;font-size:14.5px;color:var(--ink);line-height:1.55}
   .qa-q .arrow{margin-left:auto;flex:none;color:var(--ink-3);transition:transform .25s;margin-top:3px}
   details[open] .qa-q .arrow{transform:rotate(180deg)}
@@ -429,6 +502,7 @@
       <a href="#home">首页</a>
       <a href="#about">关于海洋</a>
       <a href="#features">核心内容</a>
+      <a href="#classnotes">课堂笔记</a>
       <a href="#knowledge">知识库</a>
       <a href="#reference">参考书目</a>
       <a href="#story">故事会</a>
@@ -756,33 +830,42 @@
     <div class="divider"></div>
   </div>
   <div class="kb-grid">
-    <div class="kb-card"><div class="ico">🤖</div><h4>AI 助手</h4>
+    <div class="kb-card t-ai">
+      <div class="kb-top"><div class="ico">🤖</div><span class="count">4 个工具</span></div>
+      <h4>AI 助手</h4>
+      <p class="desc">对话式智能助手，辅助文献调研、代码编写与思路梳理</p>
       <ul>
-        <li><a href="https://chat.openai.com" target="_blank" rel="noopener">💬 ChatGPT</a></li>
-        <li><a href="https://www.perplexity.ai" target="_blank" rel="noopener">🔍 Perplexity AI</a></li>
-        <li><a href="https://claude.ai" target="_blank" rel="noopener">🧠 Claude</a></li>
-        <li><a href="https://www.trae.ai" target="_blank" rel="noopener">💻 Trae</a></li>
+        <li><a href="https://chat.openai.com" target="_blank" rel="noopener">💬 ChatGPT<span class="arr">↗</span></a></li>
+        <li><a href="https://www.perplexity.ai" target="_blank" rel="noopener">🔍 Perplexity AI<span class="arr">↗</span></a></li>
+        <li><a href="https://claude.ai" target="_blank" rel="noopener">🧠 Claude<span class="arr">↗</span></a></li>
+        <li><a href="https://www.trae.ai" target="_blank" rel="noopener">💻 Trae<span class="arr">↗</span></a></li>
       </ul>
     </div>
-    <div class="kb-card"><div class="ico">🛰️</div><h4>物理海洋数据库</h4>
+    <div class="kb-card t-data">
+      <div class="kb-top"><div class="ico">🛰️</div><span class="count">8 个数据库</span></div>
+      <h4>物理海洋数据库</h4>
+      <p class="desc">全球观测、再分析与卫星数据的一手来源</p>
       <ul>
-        <li><a href="https://www.oceanbestpractices.org" target="_blank" rel="noopener">📋 OceanBestPractices</a></li>
-        <li><a href="https://earth.nullschool.net/zh-cn/" target="_blank" rel="noopener">🌍 Earth Nullschool</a></li>
-        <li><a href="https://oceanexplorer.noaa.gov" target="_blank" rel="noopener">🔬 NOAA Ocean Exploration</a></li>
-        <li><a href="https://www.sciencedirect.com" target="_blank" rel="noopener">📄 ScienceDirect</a></li>
-        <li><a href="https://marine.copernicus.eu" target="_blank" rel="noopener">🛰️ Copernicus Marine</a></li>
-        <li><a href="https://apdrc.soest.hawaii.edu" target="_blank" rel="noopener">🏝️ APDRC</a></li>
-        <li><a href="https://www.pmel.noaa.gov/tao" target="_blank" rel="noopener">🌡️ TAO Project</a></li>
-        <li><a href="https://www.ncei.noaa.gov" target="_blank" rel="noopener">📦 NCEI</a></li>
+        <li><a href="https://www.oceanbestpractices.org" target="_blank" rel="noopener">📋 OceanBestPractices<span class="arr">↗</span></a></li>
+        <li><a href="https://earth.nullschool.net/zh-cn/" target="_blank" rel="noopener">🌍 Earth Nullschool<span class="arr">↗</span></a></li>
+        <li><a href="https://oceanexplorer.noaa.gov" target="_blank" rel="noopener">🔬 NOAA Ocean Exploration<span class="arr">↗</span></a></li>
+        <li><a href="https://www.sciencedirect.com" target="_blank" rel="noopener">📄 ScienceDirect<span class="arr">↗</span></a></li>
+        <li><a href="https://marine.copernicus.eu" target="_blank" rel="noopener">🛰️ Copernicus Marine<span class="arr">↗</span></a></li>
+        <li><a href="https://apdrc.soest.hawaii.edu" target="_blank" rel="noopener">🏝️ APDRC<span class="arr">↗</span></a></li>
+        <li><a href="https://www.pmel.noaa.gov/tao" target="_blank" rel="noopener">🌡️ TAO Project<span class="arr">↗</span></a></li>
+        <li><a href="https://www.ncei.noaa.gov" target="_blank" rel="noopener">📦 NCEI<span class="arr">↗</span></a></li>
       </ul>
     </div>
-    <div class="kb-card"><div class="ico">📊</div><h4>绘图工具</h4>
+    <div class="kb-card t-plot">
+      <div class="kb-top"><div class="ico">📊</div><span class="count">5 个工具</span></div>
+      <h4>绘图工具</h4>
+      <p class="desc">从专业海洋绘图到通用科学可视化</p>
       <ul>
-        <li><a href="https://odv.awi.de" target="_blank" rel="noopener">🌊 Ocean Data View</a></li>
-        <li><a href="https://www.giss.nasa.gov/tools/panoply" target="_blank" rel="noopener">🗺️ Panoply</a></li>
-        <li><a href="https://matplotlib.org" target="_blank" rel="noopener">🐍 Python Matplotlib/Seaborn</a></li>
-        <li><a href="https://www.mathworks.com" target="_blank" rel="noopener">📐 MATLAB</a></li>
-        <li><a href="https://rawgraphs.io" target="_blank" rel="noopener">📊 RAWGraphs</a></li>
+        <li><a href="https://odv.awi.de" target="_blank" rel="noopener">🌊 Ocean Data View<span class="arr">↗</span></a></li>
+        <li><a href="https://www.giss.nasa.gov/tools/panoply" target="_blank" rel="noopener">🗺️ Panoply<span class="arr">↗</span></a></li>
+        <li><a href="https://matplotlib.org" target="_blank" rel="noopener">🐍 Python Matplotlib/Seaborn<span class="arr">↗</span></a></li>
+        <li><a href="https://www.mathworks.com" target="_blank" rel="noopener">📐 MATLAB<span class="arr">↗</span></a></li>
+        <li><a href="https://rawgraphs.io" target="_blank" rel="noopener">📊 RAWGraphs<span class="arr">↗</span></a></li>
       </ul>
     </div>
   </div>
@@ -820,7 +903,6 @@
     <p class="lead">混合层、温盐结构与海表热收支 · 点击展开参考答案</p>
     <div class="divider"></div>
   </div>
-  <div class="qa-group">第一组 · 混合层、温盐结构与温跃层<span>7 questions</span></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">1</span><span class="en">How deep is a typical mixed layer if mixed by wind? How deep can it reach if driven by cooling?</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><p><b>风搅拌混合：</b>典型深度约 <b>10–100 m</b>（中纬度夏季仅几十米，冬季可达 100–200 m）。深度取决于风速与持续时间、以及层结强度，湍流动能必须克服浮力才能往下混合。</p><p><b>降温驱动（对流混合）：</b>一旦表层变重失稳，对流在浮力驱动下可持续向下"挖掘"，深度远超风混合——中纬度冬季可达<b>数百米</b>；高纬度深对流区（拉布拉多海、格陵兰海、威德尔海）冬季可达 <b>1000–2000 m 甚至更深</b>。</p></div></details></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">2</span><span class="en">What are the typical vertical temperature and salinity profiles in the subtropical and subpolar regions of the North Pacific?</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><p><b>副热带（约 30°N）温度：</b>表层暖（&gt;20°C）→ 上部 50–100 m 为季节性温跃层 → 100–800 m 为主温跃层（梯度最大约 200–400 m）→ 深层缓慢降至 ~2°C。<b>盐度：</b>表层因 E−P&gt;0 偏高（~34.8），100–200 m 出现盐度次高，500–800 m 因北太平洋中层水（NPIW）形成盐度极小（~34.2），深层缓慢回升至 ~34.7。</p><p><b>副极地（约 50°N）温度：</b>全年冷、层结弱，无明显永久温跃层，温度随深度近似单调缓降。<b>盐度：</b>表层低（降水与淡水输入，~32.8–33.5），随深度递增形成盐跃层，~300 m 以下接近 34.5。<b>关键区别：</b>副热带层结由温度主导（pycnocline ≈ thermocline），副极地层结由盐度主导（pycnocline ≈ halocline）。</p></div></details></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">3</span><span class="en">What are the dominant regions of net evaporation in the ocean?</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><p>净蒸发（E−P &gt; 0）主要位于<b>副热带高压带（约 15°–35°S/N）大洋东部</b>：北大西洋东部（加那利、撒哈拉以西）、南大西洋、南太平洋东部（智利外海）、南印度洋。</p><p><b>边缘海：</b>地中海、红海、波斯湾净蒸发极强（Ri = E/P ≫ 1），是重要的深层高盐水源地。</p><p><b>原因：</b>信风输送干燥空气、云量少降水少、湿度差大；对比之下赤道（ITCZ 强降水）与高纬度海区（P &gt; E）为净获得淡水区。</p></div></details></div>
@@ -828,19 +910,324 @@
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">5</span><span class="en">Is the North Atlantic Ocean saltier or fresher on average than the Pacific? Why?</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><p><b>大西洋更咸</b>（副热带约 35.0–35.5，太平洋约 34.5–34.8）。主要原因：</p><ul><li><b>大气水汽输送（主导因素）：</b>东北信风携带大西洋上空的水汽越过中美洲进入太平洋 → 大西洋 P−E&lt;0（净蒸发），太平洋 P−E&gt;0（净降水）</li><li><b>高盐地中海溢流</b>注入北大西洋深层</li><li>大西洋相对狭窄、蒸发效率高；太平洋 ITCZ 强降水面积大、周边河流淡水注入多</li></ul><p>这一净蒸发差异也是深水形成（NADW）位于大西洋、而太平洋只有低盐中层水（NPIW）的重要原因。</p></div></details></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">6</span><span class="en">What regions of the ocean are characterized by large differences from summer to winter? What regions have the least seasonal variability?</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><p><b>季节差异最大：</b>中纬度（约 30°–50°）<b>西边界流延伸区</b>（湾流、黑潮延伸体）及西北大陆架（黄海、渤海等）——冬夏 SST 差可达 <b>8–12°C</b>；冬季强冷却加大风使混合层从几十米加深到数百米，夏季强烈层结化。</p><p><b>季节变化最小：</b><b>赤道海域</b>（冷舌区年较差仅 ~1–2°C）与<b>南大洋（约 50°S 一带）</b>（强混合、太阳辐射年变化平缓）。</p></div></details></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">7</span><span class="en">Please describe the two processes that maintain the thermocline.</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><p>主温跃层由两个过程的平衡维持：</p><ul><li><b>① 风生下沉／潜沉（Ekman pumping &amp; subduction）：</b>副热带环流区正旋度风应力产生 Ekman 抽吸（向下流速），把表层暖水沿等密度面向下潜沉，形成并维持上陡下缓的温跃层结构（通风温跃层理论）</li><li><b>② 湍流扩散—上升流平衡（advective–diffusive balance）：</b>向下的湍流热扩散（把热往深层送）与深层冷水上涌（把冷往上送）相互平衡，使温跃层维持陡峭梯度而不无限加深</li></ul></div></details></div>
-  <div class="qa-group">第二组 · 海表热收支 Qs / Qb / Qe / Qh<span>2 questions</span></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">8</span><span class="en">What factors determine the heat budget terms, Qs, Qb, Qe and Qh, respectively? Make clear the importance of each factor of each term.</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><ul><li><b>Qs（净短波，主导加热项）：</b>重要性排序——<b>太阳高度角</b>（纬度/季节/昼夜）&gt; <b>云量</b>（反射+吸收）&gt; 大气衰减 &gt; 海面反照率</li><li><b>Qb（净长波损失）：</b>取决于 <b>SST</b>（黑体辐射 ∝ T⁴）与<b>大气逆辐射</b>；<b>云与水汽是最重要的调节因子</b></li><li><b>Qe（潜热损失，最大冷却项）：</b>Qe = ρ·Lv·Ce·U·[qs(Ts) − qa]；因子重要性——<b>SST</b>（决定饱和比湿）≈ <b>风速 U</b> ≈ <b>近海面相对湿度</b></li><li><b>Qh（显热损失，量级最小）：</b>Qh = ρ·Cp·Ch·U·(Ts − Ta)；取决于<b>海气温差</b>与<b>风速</b>，仅冬季西边界流延伸区显著</li></ul><p>对净热收支的贡献：<b>Qs 主导加热，Qe 主导冷却，Qb 次级冷却，Qh 最小</b>。</p></div></details></div>
   <div class="qa-card"><details><summary><div class="qa-q"><span class="qa-num">9</span><span class="en">What are the ranges of the magnitude of the four terms? For each term, please specify the location and value of the maximum and minimum center.</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div></summary><div class="qa-a"><ul><li><b>Qs：</b>月平均范围 <b>0 ~ 300 W/m²</b>。极大：夏季副热带大洋东部少云海区（~280–300）；极小：冬季高纬/极区（≈0）</li><li><b>Qb：</b>净损失 <b>−30 ~ −90 W/m²</b>。损失最大：干燥少云的副热带东部及红海（−80 ~ −100）；损失最小：多云多雾的赤道 ITCZ 与高纬海区（~ −30）</li><li><b>Qe：</b>净损失 <b>−30 ~ −250 W/m²</b>（冬季极端 &gt; −300）。损失最大：冬季湾流/黑潮延伸体（−200 ~ −300）及红海、阿拉伯海冬季风区；损失最小：赤道暖池与高纬冷海（−30 ~ −50）</li><li><b>Qh：</b>净损失 <b>−5 ~ −50 W/m²</b>（极端 ~ −100）。损失最大：冬季西边界流延伸区冷空气爆发；损失最小：赤道（Ts ≈ Ta）与弱风区</li></ul><p>以上为月平均气候态典型量级（参考 Talley et al., <i>Descriptive Physical Oceanography</i>）。</p></div></details></div>
+</section>
+
+<!-- ═══ 课堂笔记 ═══ -->
+<section class="section" id="classnotes">
+<style>
+  .cn-wrap{max-width:960px;margin:0 auto}
+  .cn-intro{text-align:center;margin-bottom:36px;font-size:14px;color:var(--ink-2);line-height:1.9}
+  .cn-intro b{color:var(--ocean-deep)}
+  .cn-timeline{position:relative;padding-left:42px}
+  .cn-timeline::before{content:"";position:absolute;left:17px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--ocean),var(--ocean-deep) 40%,var(--cyan) 70%,var(--teal))}
+  .cn-class{position:relative;margin-bottom:28px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px 26px;box-shadow:var(--shadow);transition:.22s}
+  .cn-class:hover{transform:translateX(6px);border-color:#bae6fd;box-shadow:0 14px 30px -10px rgba(12,74,110,.2)}
+  .cn-class::before{content:"";position:absolute;left:-31px;top:28px;width:12px;height:12px;border-radius:50%;background:var(--ocean);border:3px solid #fff;box-shadow:0 0 0 2px var(--ocean);z-index:1}
+  .cn-class:nth-child(4n+1)::before{background:var(--ocean)}
+  .cn-class:nth-child(4n+2)::before{background:var(--cyan)}
+  .cn-class:nth-child(4n+3)::before{background:var(--ocean-deep)}
+  .cn-class:nth-child(4n+4)::before{background:var(--teal)}
+  .cn-class-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .cn-class-num{flex:none;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--ocean),var(--ocean-deep))}
+  .cn-class:nth-child(4n+2) .cn-class-num{background:linear-gradient(135deg,var(--cyan),var(--teal))}
+  .cn-class:nth-child(4n+3) .cn-class-num{background:linear-gradient(135deg,#6366f1,#4f46e5)}
+  .cn-class:nth-child(4n+4) .cn-class-num{background:linear-gradient(135deg,#f59e0b,#d97706)}
+  .cn-class-title{font-size:17px;font-weight:800;color:var(--ink)}
+  .cn-class-date{font-size:12.5px;color:var(--ink-3);margin-left:auto}
+  .cn-class-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .cn-tag{font-size:11.5px;padding:3px 10px;border-radius:999px;font-weight:600}
+  .cn-tag-book{background:#fef3c7;color:#b45309}
+  .cn-tag-ticket{background:#dbeafe;color:#1d4ed8}
+  .cn-tag-question{background:#fce7f3;color:#be185d}
+  .cn-class-body{font-size:13.5px;color:var(--ink-2);line-height:1.85}
+  .cn-class-body h4{font-size:14.5px;font-weight:700;color:var(--ink);margin:14px 0 6px;display:flex;align-items:center;gap:7px}
+  .cn-class-body h4::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--ocean)}
+  .cn-class-body ul,.cn-class-body ol{margin:4px 0;padding-left:20px}
+  .cn-class-body li{margin:4px 0}
+  .cn-class-body b{color:var(--ink)}
+  .cn-question-box{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid #f97316;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:13px;color:#9a3412;line-height:1.8}
+  .cn-question-box b{color:#c2410c}
+  .cn-resolve-box{background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:10px;padding:12px 16px;margin-top:8px;font-size:13px;color:#166534;line-height:1.8}
+  .cn-resolve-box b{color:#15803d}
+  @media(max-width:640px){
+    .cn-timeline{padding-left:30px}
+    .cn-class{padding:16px 18px}
+    .cn-class::before{left:-23px;width:10px;height:10px}
+    .cn-timeline::before{left:13px}
+  }
+</style>
+  <div class="sec-head">
+    <div class="kicker">Class Notes</div>
+    <h2>课堂笔记 · 我的DPO学习记录</h2>
+    <p class="lead">按上课顺序整理的课堂收获、个人理解与思考疑问——不是教材复读，是我当场 get 到的东西。</p>
+    <div class="divider"></div>
+  </div>
+  <div class="cn-wrap">
+    <div class="cn-intro">
+      共 <b>10 次课</b>的笔记整理 · 每条笔记都是<b>我自己的话</b>重新表述的 ·
+      标注了<b>当时没想通的问题</b>以及<b>后来怎么想明白的</b> ·
+      关联教材章节（<i>Descriptive Physical Oceanography</i>）和出门票
+    </div>
+
+    <div class="cn-timeline">
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">1</div>
+          <div class="cn-class-title">物理海洋学导论 · 这门课在研究什么</div>
+          <div class="cn-class-date">第 1 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第1章 · 海洋概览</span>
+          <span class="cn-tag cn-tag-ticket">出门票 1</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>物理海洋学不是"海洋里有什么生物"，而是研究<b>海水为什么动、怎么动、动了会怎样</b>。它关注温度、盐度、密度这三个基本物理量在海洋中的分布，以及它们驱动的环流、波动和混合过程。这门课的底层逻辑是：<b>旋转地球上、密度分层的流体，在风应力和热通量的强迫下如何运动</b>。</p>
+          <h4>我的思考</h4>
+          <p>以前总觉得海洋就是一大盆水，但这门课教会我：因为地球在转（科氏力），因为海水密度是分层的（层结），所以海洋的运动远比淡水池塘复杂一万倍。最震撼的一点是——<b>大洋环流不是直接由风吹出来的，而是风先在表层造出倾斜（Ekman输运→海面坡度），然后通过地转平衡间接驱动深层环流</b>。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>科氏力是"视示力"（虚拟力），它不真实存在，为什么在海洋动力学里却被当作真实力来用？一个"假力"怎么能和压强梯度力平衡？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>科氏力在惯性系中确实不存在，但在旋转参考系（地球）中，它的数学效果是真实可测的——就像坐旋转木马时感受到的"离心力"一样。在旋转地球上写运动方程，科氏项自然会出现在方程左边。它和压强梯度力平衡，不是因为两者是"同性质的力"，而是在旋转参考系的动量方程中，两者恰好数值相等、方向相反→加速度为零→流动稳态。物理上，这是<b>压强梯度力做功维持流动的曲率，而曲率本身来自科氏加速度对速度方向的持续偏转</b>。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">2</div>
+          <div class="cn-class-title">海水温度与盐度 · T-S 分布规律</div>
+          <div class="cn-class-date">第 2 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第3–4章 · 温度与盐度</span>
+          <span class="cn-tag cn-tag-ticket">出门票 1</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>全球海洋的T-S分布不是随机的——<b>副热带</b>（约30°N/S）是温暖、高盐（蒸发>降水），层结强、温跃层深；<b>副极地</b>（约50°N/S）是冷凉、低盐（降水+淡水输入>蒸发），层结弱。关键洞察：<b>副热带层结由温度主导（pycnocline≈thermocline），副极地层结由盐度主导（pycnocline≈halocline）</b>。大西洋整体比太平洋咸，根本原因是信风把大西洋水汽吹到太平洋上空——大西洋净蒸发、太平洋净降水。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>为什么北大西洋深层水（NADW）形成在大西洋，而太平洋没有对应的深水形成？两个大洋的副极地都很冷，为什么只有大西洋能沉下去？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>深层水形成不仅需要"冷"，还需要"足够咸"。北大西洋因为净蒸发（E>P）+地中海高盐溢流，表层水咸度足够高，冷却后密度能大到沉下去；北太平洋降水多、盐度太低，即使冷到0°C也不够重——这就是"盐度阀门"效应。答案不是温度问题，是盐度问题。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">3</div>
+          <div class="cn-class-title">混合层与海表热收支 · Qs/Qb/Qe/Qh</div>
+          <div class="cn-class-date">第 3 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第5章 · 海表热收支</span>
+          <span class="cn-tag cn-tag-ticket">出门票 2</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>海洋混合层的温度变化由四项热通量决定：<b>Qs（净短波）加热、Qe（潜热）冷却、Qb（净长波）次级冷却、Qh（显热）最小</b>。四个量的相对重要性排序：Qs≈Qe ≫ Qb ≫ Qh。混合层深度由风搅拌（向下混合）和对流冷却（表层变重下沉）两种机制决定——纯粹风搅拌只能到~100m，但对流冷却可以把混合层挖到数百甚至上千米深。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>Qs（短波辐射）能穿透到水下几十米，而Qe/Qb/Qh只发生在"冷膜"（海表几毫米内）——那我们为什么把它们都写在同一个混合层热量收支方程里？穿透深度不一样，怎么能直接相加？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>关键不在于它们"作用在哪个深度"，而在于它们都<b>改变混合层的总热含量</b>。Qs穿透后留在混合层内（扣除穿透底部的部分），Qe/Qb/Qh虽只作用于表面冷膜，但表面冷却会立即通过湍流混合传递给整个混合层。方程写的是"混合层的积分热平衡"，不是某个深度的局部热平衡——所以可以直接相加。细节处理方法是用Qs(0)−Qs(−h)扣除穿透底部的短波。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">4</div>
+          <div class="cn-class-title">海洋层化 · 温跃层与密跃层</div>
+          <div class="cn-class-date">第 4 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第5–6章 · 层化与混合</span>
+          <span class="cn-tag cn-tag-ticket">出门票 3</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>主温跃层（permanent thermocline）由两个过程的平衡维持：① <b>风生潜沉</b>（副热带Ekman抽吸把表层暖水沿等密度面往下推→通风温跃层理论）；② <b>湍流扩散—上升流平衡</b>（向下热扩散 vs 深层冷水上涌）。季节性温跃层则只在春夏出现，秋冬季被对流混合破坏。温跃层强度直接决定了海洋的"层结刚度"——越强越难混合，越弱越容易发生深对流。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>如果湍流扩散一直把热量往下送，为什么温跃层不会无限加深？岂不是几百万年后整个海洋都变暖了？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>因为有<b>深层冷水上涌</b>来平衡。全球热盐环流（MOC）把高纬度形成的冷水送回深层并缓慢上升，向上输送的冷水量正好抵消了向下扩散的热量，使温跃层长期维持在稳定位置。这就是advective-diffusive balance——不是"只有扩散"，而是"扩散+平流达到稳态"。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">5</div>
+          <div class="cn-class-title">地转平衡 · 压强梯度力与科氏力</div>
+          <div class="cn-class-date">第 5 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第7章 · 地转流</span>
+          <span class="cn-tag cn-tag-ticket">出门票 4</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>地转平衡是海洋动力学的基石：在大尺度（Rossby数≪1）、准稳态、无摩擦的前提下，<b>水平压强梯度力与科氏力近乎精确平衡</b>，流动沿等海面高线而非顺坡而下。北半球口诀"背流而立、右高压"——流右侧海面更高。表面地转流由卫星高度计的海面高度η直接推算（u=−g/f·∂η/∂y, v=g/f·∂η/∂x），深层地转流通过水文断面动力高度计算结合零参考面（无运动层）获得。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>如果地转流近似无辐散（f≠0时），那它怎么产生垂向运动？上升流从哪里来？这和Ekman抽吸是什么关系？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>地转流本身确实不能直接产生上升流（水平散度≈0），但垂向速度可以通过<b>涡度守恒约束</b>间接产生：① Ekman抽吸（风应力旋度→Ekman输运辐合/辐散→垂向速度 w_E）；② β效应（地转流跨越纬度时f变化→为保持位涡守恒必须拉伸/压缩水柱→产生垂向速度）。这就是"地转流动不了垂向→Ekman和β效应来帮忙"的分工逻辑。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">6</div>
+          <div class="cn-class-title">Ekman理论 · 螺旋、输运与抽吸</div>
+          <div class="cn-class-date">第 6 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第7章 · Ekman层</span>
+          <span class="cn-tag cn-tag-ticket">出门票 5</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>Ekman（1905）解开了Vagn Ekman对Fram号观测的困惑：浮冰漂移偏风右侧20–40°。在"稳态+均匀+风应力+科氏力+垂直涡动粘性"的假设下，经典解给出：<b>表层流偏风右45°、随深度矢量右旋衰减</b>（Ekman螺旋）、Ekman层深度δE=√(2K/f)约20–100m、<b>净输运垂直于风指向右90°</b>（北半球，M=τ/(ρf)，与螺旋细节无关！）。Ekman输运的辐合/辐散（Ekman抽吸）是风应力连接地转环流的关键纽带。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>Ekman（1905）的推导用的是均匀密度+常数涡动粘性K——但真实海洋K随深度和层结剧烈变化。这个理论还能用吗？实测的Ekman螺旋和经典解差多少？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>经典Ekman理论的"砖"有两块：①螺旋形态依赖于K为常数（实测螺旋往往没有理论那么漂亮、偏角也偏小至10–40°）；②但<b>净输运M=τ/(ρf)不依赖于K</b>——不管你用什么K值、不管螺旋歪成什么样，对全层的积分必定等于风应力除以ρf。这就是Ekman理论最美妙的地方：细节可以错，但净输运这个"总账"永远对。现实中我们更关心净输运（因为它驱动上升流和环流），而不是螺旋的精确形状。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">7</div>
+          <div class="cn-class-title">Sverdrup平衡与风生环流</div>
+          <div class="cn-class-date">第 7 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第7章 · Sverdrup平衡</span>
+          <span class="cn-tag cn-tag-ticket">出门票 5</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>Sverdrup平衡是风生大洋环流理论的核心方程：βV = curl(τ)/ρ。这个简洁的公式说的是：<b>经向输运V由风应力旋度决定</b>。北半球副热带（信风+西风带→负旋度）→ V向南（向赤道）→ 为满足质量守恒必须由西边界流向北返回→这就自然导出了西边界流强化（湾流、黑潮）。Sverdrup平衡 + 西边界流 = 副热带环流圈（Subtropical Gyre）的基础框架。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>Sverdrup平衡推导中假设了"内区无摩擦、只在西边界有摩擦"——这看起来像个数学trick。为什么西边界就必须有摩擦？东边界为什么不需要？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>这本质上是<b>行星波传播方向</b>决定的。长Rossby波在北半球向西传播——所以东边界施加的扰动（如海岸阻挡）无法向西传播影响内区，只有西边界才能通过短Rossby波把信息传回内区。Sverdrup解只能满足东边界的无穿透条件；西边界必须靠摩擦力项（或惯性项）来闭合环流——这就是Stommel（1948）和Munk（1950）西边界流理论的物理本质。不是数学trick，是波传播方向逼出来的。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">8</div>
+          <div class="cn-class-title">ENSO · 厄尔尼诺与拉尼娜</div>
+          <div class="cn-class-date">第 8 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第9章 · 年际变率</span>
+          <span class="cn-tag cn-tag-ticket">出门票 6</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>ENSO是地球气候系统最强的年际信号（周期2–7年），核心机制是赤道太平洋的海气耦合不稳定：<b>Bjerknes正反馈</b>（赤道东风减弱→东太平洋暖池扩展→东西温差减小→东风进一步减弱）。Niño3.4指数（5°S–5°N, 170°W–120°W的海表温度距平）是最常用的监测指标，距平>+0.5°C为厄尔尼诺、<−0.5°C为拉尼娜、中间为中性。连续5个月超过阈值才算一次正式事件。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>如果Bjerknes反馈是正反馈，为什么ENSO不会无限放大？是什么刹车机制让它每2–7年就自己翻转到相反位相？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>刹车机制来自<b>赤道波动力学中的延迟振子理论（delayed oscillator）</b>：厄尔尼诺暖事件激发出向西传播的赤道Rossby波→在西边界反射为向东传播的上升Kelvin波→到达东太平洋时使温跃层抬升→终止暖事件→转向拉尼娜。正反馈让ENSO长起来，波的延迟传播让它自己把自己掐灭——这就是ENSO的"自持振荡"本质。不是"无限放大"，而是"长到一半被自己反射的波打回来"。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">9</div>
+          <div class="cn-class-title">EOF经验正交分解 · 从数据中提取模态</div>
+          <div class="cn-class-date">第 9 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">补充专题 · 气候诊断方法</span>
+          <span class="cn-tag cn-tag-ticket">故事会关联</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>EOF（经验正交函数分解）是气候诊断中最经典的统计方法。核心思想：<b>把随时间变化的二维场（如SST距平场，T×N矩阵）做奇异值分解，拆成若干"空间模态×时间系数"的乘积之和</b>。第一模态解释最大方差、且各模态相互正交（空间型正交、时间系数不相关）。对热带太平洋SST距平做EOF，第一模态EOF1就是ENSO信号（赤道中东太平洋增暖、西太平洋偏冷），PC1与Niño3.4指数高度相关。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>EOF分解得到的模态是数学构造出来的，它真的有物理意义吗？我们凭什么说EOF1"就是"ENSO，而不是一个巧合的数学投影？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>这个问题分两层回答。①数学上，EOF找的是方差最大的方向——如果海洋里确实存在一个主导性的物理模态（如ENSO），它自然就是方差最大的那个方向，所以EOF1抓到它不意外。②物理验证：EOF1的空间型是不是和我们对ENSO的物理理解一致（东太平洋暖、西太平洋冷）？PC1的时间序列能不能和独立观测的Niño3.4指数对上（相关系数~0.95+）？这两条都通过了，EOF1就确实"是"ENSO。但EOF≠物理机制——它只描述"什么样"，不解释"为什么"。要解释为什么，需要结合Bjerknes反馈等动力学理论。
+          </div>
+        </div>
+      </div>
+
+      <div class="cn-class">
+        <div class="cn-class-head">
+          <div class="cn-class-num">10</div>
+          <div class="cn-class-title">惯性流 · 风停之后海洋的余音</div>
+          <div class="cn-class-date">第 10 周</div>
+        </div>
+        <div class="cn-class-meta">
+          <span class="cn-tag cn-tag-book">第7章 · 惯性振荡</span>
+          <span class="cn-tag cn-tag-ticket">出门票 6</span>
+        </div>
+        <div class="cn-class-body">
+          <h4>我理解的核心内容</h4>
+          <p>惯性流是海洋动力学中最简单也最美的一种运动形态：风暴过后风应力撤除，混合层中已被加速的海水失去驱动力，仅在科氏力作用下做<b>自由圆周振荡</b>——速度大小不变、方向匀速旋转，周期为半摆日T=2π/f（45°N约16.9h），半径为r=V/f（典型值约1–2km）。把它叠加上背景地转流后，浮标轨迹呈现<b>前进的螺旋线</b>，是海洋实测中最显著的高频信号。</p>
+          <div class="cn-question-box">
+            <b>当时没想通的疑问：</b>惯性流和Ekman流都涉及科氏力+摩擦，它们的区别到底是什么？为什么一个做圆周振荡、一个做螺旋衰减？
+          </div>
+          <div class="cn-resolve-box">
+            <b>后来怎么想通的：</b>关键区别在于<b>有没有持续的驱动力</b>。惯性流：风应力撤除后，只有科氏力→做纯圆周振荡（摩擦慢慢耗散能量）。Ekman流：风应力一直在吹→科氏力+风应力+摩擦三者平衡→形成稳态螺旋。打个比方：惯性流是风吹过后海水的"余音"（自由振荡），Ekman流是风还在吹时的"稳态合唱"（受迫响应）。两者不矛盾——真实海洋是两者的叠加：风暴来时先是Ekman响应，风停后剩惯性振荡慢慢衰减。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- ═══ 故事会：Niño3.4 监测 ═══ -->
 <section class="section" id="story" style="max-width:none;background:linear-gradient(180deg,#e0f2fe,#f0f9ff)">
   <div class="section" style="padding-top:60px">
     <div class="sec-head">
-      <div class="kicker">Story Time · Chapter 1 · ENSO</div>
+      <div class="kicker">Story Time · ENSO</div>
       <h2>故事会 · 从一条曲线到一个场</h2>
-      <p class="lead">用三个章节讲完同一个故事：第一章用一个数字（Niño3.4 指数实时监测，数据 NOAA CPC，与 ONI 同源）捕捉 ENSO 的脉搏；第二章用 EOF 分解把整片热带太平洋的海温场拆成几个可理解的空间模态；第三章是一份 10 分钟的互动课件，把两种讲法严丝合缝地拼在一起。</p>
+      <p class="lead">用三个篇章讲完同一个故事：先用一个数字（Niño3.4 指数实时监测，数据 NOAA CPC，与 ONI 同源）捕捉 ENSO 的脉搏；再用 EOF 分解把整片热带太平洋的海温场拆成几个可理解的空间模态；最后是一份 10 分钟的互动课件，把两种讲法严丝合缝地拼在一起。</p>
       <div class="divider"></div>
+    </div>
+
+    <!-- 故事 TL;DR 摘要卡片 -->
+    <div style="max-width:960px;margin:0 auto 32px;background:linear-gradient(135deg,#fff7ed,#fff);border:2px solid #fed7aa;border-radius:16px;padding:22px 28px;box-shadow:0 4px 12px rgba(249,115,22,.1)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:22px">📖</span>
+        <strong style="font-size:16px;color:#c2410c">这个故事讲了什么？—— 给我 30 秒就能看懂</strong>
+      </div>
+      <p style="font-size:14px;color:#78350f;line-height:1.9;margin:0 0 10px">
+        <b>起点（一个数字）：</b>赤道太平洋中部有一块叫 Niño3.4 的海域，它的海温每隔2–7年就会异常变暖（厄尔尼诺）或变冷（拉尼娜），我把 NOAA 的数据做成实时监测 → <b>下面第一块就是</b>。
+      </p>
+      <p style="font-size:14px;color:#78350f;line-height:1.9;margin:0 0 10px">
+        <b>展开（一个场）：</b>但一个数字只能告诉你"有多暖"，不能告诉你"暖在哪里"。于是我对整片热带太平洋的海温距平做 EOF 分解——相当于把几十年的海温电影压缩成几张固定的"空间模板" → <b>第二块就是</b>。
+      </p>
+      <p style="font-size:14px;color:#78350f;line-height:1.9;margin:0">
+        <b>归宿（一个课件）：</b>一条曲线和一个场其实是同一个 ENSO 故事的两种讲法。我把它们合并成一个 10 分钟互动课件，step-by-step 把"数字怎么和场对上"讲清楚 → <b>第三块就是</b>。
+      </p>
+      <p style="font-size:12px;color:#d97706;margin-top:12px;text-align:right">
+        这个故事里<b>每一行代码、每一张图、每一个数据点</b>都是我自己写的、算的、从 NOAA 下载的——
+        发给同学看，他们说"哦原来 Niño3.4 是这个意思"。
+      </p>
     </div>
 
     <div class="monitor-wrap">
@@ -886,8 +1273,8 @@
     <div class="story-chapter" id="eof">
 
   <div class="sec-head">
-    <div class="kicker">Story Time · Chapter 2</div>
-    <h2>第二章 · EOF 经验正交分解 · 从一条曲线到一个场</h2>
+    <div class="kicker">Story Time · EOF</div>
+    <h2>EOF 经验正交分解 · 从一条曲线到一个场</h2>
     <p class="lead">EOF（经验正交函数分解）是气候诊断分析中最经典的统计方法：将海表温度距平场分解为若干随时间振荡的空间模态（EOF）及其对应的时间系数（PC），从而用最少的主导模态刻画海表温度变率的主要空间型态。对 20°S–20°N 热带太平洋做 EOF 分解，第一模态正是鼎鼎大名的 ENSO（厄尔尼诺-南方涛动）信号。</p>
     <div class="divider"></div>
   </div>
@@ -1012,8 +1399,8 @@
 
     <div class="story-chapter" id="deck">
       <div class="sec-head" style="margin-bottom:26px">
-        <div class="kicker">Story Time · Chapter 3</div>
-        <h2>第三章 · 互动课件：太平洋的心跳</h2>
+        <div class="kicker">Story Time · Interactive</div>
+        <h2>互动课件：太平洋的心跳</h2>
         <p class="lead">一条曲线（Niño3.4）与一个场（EOF）其实是同一个故事的两种讲法。10 分钟互动课件， step-by-step 讲完整个故事。</p>
         <div class="divider"></div>
       </div>
@@ -1066,7 +1453,7 @@
             <h4>再记住一个数字：<span class="accent">Niño3.4 指数</span></h4>
             <div class="s-body" style="max-width:820px">
               <div class="chart-box" id="deckChartN34"></div>
-              <p class="s-step">把这块海域的<b>海表温度距平</b>（减去多年平均）逐月记下来，就得到一条上下振荡的曲线——上方第一章的实时监测画的就是它。</p>
+              <p class="s-step">把这块海域的<b>海表温度距平</b>（减去多年平均）逐月记下来，就得到一条上下振荡的曲线——上方监测站的实时监测画的就是它。</p>
             </div>
           </div>
 
@@ -1091,7 +1478,7 @@
               <p class="s-step">Niño3.4 只告诉我们「这块海域<span class="hl">有多暖</span>」，却没告诉我们「暖<span class="hl-warm">在哪里</span>、冷在哪里」。</p>
               <p class="s-step">太平洋有上千个网格点，每个点都有自己的温度故事。把它们全部摊开，得到的是一张随时间变化的<b>二维距平场</b>——数据量爆炸，肉眼根本看不过来。</p>
               <p class="s-step">我们需要一个方法，把这张千变万化的场，压缩成几个可以理解的「<span class="hl">空间性格</span>」。</p>
-              <p class="s-step">这个方法就是 <b>EOF</b>——经验正交函数分解（第二章的主角）。</p>
+              <p class="s-step">这个方法就是 <b>EOF</b>——经验正交函数分解（上方 EOF 板块的主角）。</p>
             </div>
           </div>
 
@@ -1121,7 +1508,7 @@
             <h4>把 PC1 画出来：<span class="accent">似曾相识</span></h4>
             <div class="s-body" style="max-width:820px">
               <div class="chart-box" id="deckChartPc" style="height:290px"></div>
-              <p class="s-step">第一张模板的时间系数 PC1（上图深色线），形状和第一章的 Niño3.4 指数（浅色线）几乎<span class="hl">重合</span>。</p>
+              <p class="s-step">第一张模板的时间系数 PC1（上图深色线），形状和 Niño3.4 指数（浅色线）几乎<span class="hl">重合</span>。</p>
               <p class="s-step">事实上，两者的相关系数高达 <b id="deckCorr">—</b>。<b>EOF 没有「知道」什么是 Niño3.4，却自己把它找了出来。</b></p>
             </div>
           </div>
@@ -1133,7 +1520,7 @@
               <p class="s-step"><span class="hl">Niño3.4（一个数字）</span>：快、简单、可实时播报——「现在有多暖」。</p>
               <p class="s-step"><span class="hl-warm">EOF（一个场）</span>：给出完整空间图像，还能分离出 Modoki 等变异型态——「暖在哪里、是什么型」。</p>
               <p class="s-step">而 PC1 与 Niño3.4 的高度相关告诉我们：这两个讲法说的是<b>同一件事</b>。曲线是场的「脉搏」，场是曲线的「全身像」。</p>
-              <p class="s-step">想看看这个故事的「电影版」？回到第二章，播放 <b>SST 距平场 1979→2026 逐月重建动画</b>，亲眼看着 ENSO 一波一波地向东传播。</p>
+              <p class="s-step">想看看这个故事的「电影版」？回到上方的 EOF 板块，播放 <b>SST 距平场 1979→2026 逐月重建动画</b>，亲眼看着 ENSO 一波一波地向东传播。</p>
               <p class="s-step"><button class="deck-btn primary" onclick="document.getElementById('eofAnimWrap').scrollIntoView({behavior:'smooth',block:'center'})">▶ 去播放完整动画</button></p>
             </div>
           </div>
@@ -1645,12 +2032,12 @@ const EOF_DATA = {"lats":[20,18,16,14,12,10,8,6,4,2,0,-2,-4,-6,-8,-10,-12,-14,-1
     <div class="divider"></div>
   </div>
   <div class="ticket-grid ticket-grid-6">
-    <div class="ticket-card"><div class="ico">🎫</div><h4>出门票 1</h4><a href="tickets/出门票1.pdf" target="_blank" rel="noopener">查看 / 下载 PDF</a></div>
-    <div class="ticket-card"><div class="ico">🎫</div><h4>出门票 2</h4><a href="tickets/出门票2.pdf" target="_blank" rel="noopener">查看 / 下载 PDF</a></div>
-    <div class="ticket-card"><div class="ico">🎫</div><h4>出门票 3</h4><a href="tickets/出门票3.pdf" target="_blank" rel="noopener">查看 / 下载 PDF</a></div>
-    <div class="ticket-card"><div class="ico">🎫</div><h4>出门票 4</h4><a href="tickets/出门票4.pdf" target="_blank" rel="noopener">查看 / 下载 PDF</a></div>
-    <div class="ticket-card"><div class="ico">🎫</div><h4>出门票 5</h4><a href="tickets/出门票5.pdf" target="_blank" rel="noopener">查看 / 下载 PDF</a></div>
-    <div class="ticket-card"><div class="ico">🎫</div><h4>出门票 6</h4><a href="tickets/出门票6.pdf" target="_blank" rel="noopener">查看 / 下载 PDF</a></div>
+    <div class="ticket-card"><div class="num">1</div><h4>出门票 1</h4><a href="tickets/出门票1.pdf" target="_blank" rel="noopener">📄 查看 PDF</a></div>
+    <div class="ticket-card"><div class="num">2</div><h4>出门票 2</h4><a href="tickets/出门票2.pdf" target="_blank" rel="noopener">📄 查看 PDF</a></div>
+    <div class="ticket-card"><div class="num">3</div><h4>出门票 3</h4><a href="tickets/出门票3.pdf" target="_blank" rel="noopener">📄 查看 PDF</a></div>
+    <div class="ticket-card"><div class="num">4</div><h4>出门票 4</h4><a href="tickets/出门票4.pdf" target="_blank" rel="noopener">📄 查看 PDF</a></div>
+    <div class="ticket-card"><div class="num">5</div><h4>出门票 5</h4><a href="tickets/出门票5.pdf" target="_blank" rel="noopener">📄 查看 PDF</a></div>
+    <div class="ticket-card"><div class="num">6</div><h4>出门票 6</h4><a href="tickets/出门票6.pdf" target="_blank" rel="noopener">📄 查看 PDF</a></div>
   </div>
   <p class="ticket-note">共 6 期出门票 · 点击卡片即可在新标签页查看或下载 PDF</p>
 </section>
@@ -2106,9 +2493,9 @@ if (window.echarts) {
         <ul>
           <li><b>抑制垂直混合：</b>强层结把风输入的能量禁锢在上层，决定混合层能有多深。</li>
           <li><b>内波与涡旋：</b>层结是内波传播的「弹簧」，也是锋面、涡旋保持稳定的核心条件。</li>
-          <li><b>ENSO 的舞台：</b>赤道温跃层的倾斜与波动（Kelvin 波、Rossby 波）正是 ENSO 循环的发动机——故事会第二章的 EOF 第一模态，画的就是这层温跃层的起伏。</li>
+          <li><b>ENSO 的舞台：</b>赤道温跃层的倾斜与波动（Kelvin 波、Rossby 波）正是 ENSO 循环的发动机——故事会 EOF 板块的 EOF 第一模态，画的就是这层温跃层的起伏。</li>
         </ul>
-        <div class="modal-tip">🔎 副热带「温跃层 ≈ 密度跃层」（温度主导）；副极地「密度跃层 ≈ 盐度跃层」（盐度主导）——参见课堂问答第一组第 2 题。</div>`
+        <div class="modal-tip">🔎 副热带「温跃层 ≈ 密度跃层」（温度主导）；副极地「密度跃层 ≈ 盐度跃层」（盐度主导）——参见课堂问答第 2 题。</div>`
     },
     sverdrup: {
       ico: '💨', title: 'Sverdrup 平衡', en: 'Sverdrup Balance',
